@@ -13,4 +13,4 @@ sg docker -c "bash"
 
 mkdir -p /home/ubuntu/repos
 
-docker build . -t cs6747/ghidra-server:10.1.1
+docker build . -t cs6747/ghidra-server:10.1.2

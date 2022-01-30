@@ -19,6 +19,10 @@ On the next page, you will need an SSH key to connect to the instance. Either cr
 Provision the instance by clicking "Launch Instance". Wait a couple mins for instance to be available. Make ssh connection to EC2 instance (find the public ip of instance in console and ssh) and run these commands:
 
 ```bash
+# sometimes ssh will complain if ssh pem key permissions are too open:
+chmod 400 "{your_ssh_key.pem}"
+
+# connect to your new AWS EC2 instance:
 ssh -i "{your_ssh_key.pem}" ubuntu@3.5.12.13
 
 git clone https://github.com/Cryptophobia/docker-ghidra-server-aws
@@ -29,7 +33,7 @@ cd docker-ghidra-server-aws
 chmod +x ec2-setup.sh && sudo ./ec2-setup.sh
 
 # here substitute the GHIDRA_USERS that you would like to create:
-docker run -d --rm --name ghidra-server -e GHIDRA_USERS="anton jamie" -v /home/ubuntu/repos:/repos -p 13100-13102:13100-13102 cs6747/ghidra-server:10.1.1
+docker run -d --rm --name ghidra-server -e GHIDRA_USERS="anton jamie" -v /home/ubuntu/repos:/repos -p 13100-13102:13100-13102 cs6747/ghidra-server:10.1.2
 
 # docker image is now running to see:
 docker ps -a
@@ -44,7 +48,7 @@ Ghidra-server is now running in docker on the EC2 instance. To connect as ghidra
 
 ```bash
 ghidra-server   latest
-ghidra-server   10.1.1
+ghidra-server   10.1.2
 ```
 
 > **NOTE:** tag `beta` is built by compiling Ghidra from its `master` branch source
